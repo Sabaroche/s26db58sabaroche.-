@@ -1,5 +1,5 @@
 {
-  "name": "s26wb58sabaroche",
+  "name": "s26db58sabaroche",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -19,5 +19,14 @@
   "description": "Web apps server",
   "main": "app.js",
   "author": "Juvaan Sabaroche",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sabaroche/s26db58sabaroche.-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sabaroche/s26db58sabaroche.-/issues"
+  },
+  "homepage": "https://github.com/Sabaroche/s26db58sabaroche.-#readme"
 }
