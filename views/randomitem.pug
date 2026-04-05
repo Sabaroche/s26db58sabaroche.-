@@ -1,0 +1,9 @@
+extends layout
+
+block content
+ h1= title
+ div 
+  - var image_names = ['sculpt1.jpg', 'sculpt2.jpg', 'sculpt3.jpg', 'sculpt4.jpg', 'sculpt5.jpg']
+  - for(let i = 0; i < 3; i++)
+    - var imageName = image_names[Math.floor(Math.random() * 5)]
+    img(src=`/images/${imageName}`, alt=`${imageName}`, height="300", width="300" style= "padding: 10px;")

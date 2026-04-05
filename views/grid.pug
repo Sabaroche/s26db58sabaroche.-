@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p Rows: #{query.rows} Cols: #{query.cols}
+  - var rows = Number(query.rows)
+  - var cols = Number(query.cols)
+  if !Number.isInteger(rows) || !Number.isInteger(cols)
+    p Error: rows and cols must be integers
+  else if rows < 2 || rows > 12
+    p Error: rows must be between 2 and 12
+  else if cols < 2 || cols > 12
+    p Error: cols must be between 2 and 12
+  else
+    table#outer
+      - for(let i = 0; i < rows; i++) {
+        tr#middle
+          - for(let j = 0; j < cols; j++) {
+            td= (2*i - j)
+          - }
+      - }
+
