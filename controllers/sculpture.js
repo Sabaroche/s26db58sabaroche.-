@@ -37,11 +37,16 @@ exports.sculpture_detail = async function (req, res) {
 
 // Handle Sculpture create on POST.
 exports.sculpture_create_post = async function (req, res) {
+    console.log(req.body)
+    let document = new Sculpture();
+    document.material = req.body.material;
+    document.style = req.body.style;
+    document.year = req.body.year;
     try {
-        const sculpture = new Sculpture(req.body);
-        await sculpture.save();
-        res.send(sculpture);
-    } catch (err) {
+        let result = await document.save();
+        res.send(result);
+    }
+    catch (err) {
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
