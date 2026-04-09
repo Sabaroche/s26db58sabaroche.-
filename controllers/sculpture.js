@@ -1,0 +1,59 @@
+var Sculpture = require('../models/sculpture');
+
+// List of all Sculptures
+exports.sculpture_list = async function (req, res) {
+    try {
+        theSculptures = await Sculpture.find();
+        res.send(theSculptures);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
+// for a specific Sculpture.
+exports.sculpture_detail = async function (req, res) {
+    try {
+        theSculpture = await Sculpture.findById(req.params.id);
+        res.send(theSculpture);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
+// Handle Sculpture create on POST.
+exports.sculpture_create_post = async function (req, res) {
+    try {
+        const sculpture = new Sculpture(req.body);
+        await sculpture.save();
+        res.send(sculpture);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
+// Handle Sculpture delete from on DELETE.
+exports.sculpture_delete = async function (req, res) {
+    try {
+        const sculpture = await Sculpture.findByIdAndRemove(req.params.id);
+        res.send(sculpture);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
+// Handle Sculpture update form on PUT.
+exports.sculpture_update_put = async function (req, res) {
+    try {
+        const sculpture = await Sculpture.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.send(sculpture);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};

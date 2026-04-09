@@ -20,7 +20,6 @@
   "main": "app.js",
   "author": "Juvaan Sabaroche",
   "license": "ISC",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sabaroche/s26db58sabaroche.-.git"
