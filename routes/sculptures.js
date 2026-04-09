@@ -1,9 +1,8 @@
 var express = require('express');
+var sculpture_controller = require('../controllers/sculpture');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('sculptures', { title: 'Search Results Sculptures' });
-});
-
+/* GET sculptures */
+router.get('/', sculpture_controller.sculpture_view_all_Page);
 module.exports = router;
+

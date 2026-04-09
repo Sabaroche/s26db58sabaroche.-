@@ -12,6 +12,17 @@ exports.sculpture_list = async function (req, res) {
     }
 };
 
+exports.sculpture_view_all_Page = async function (req, res) {
+    try {
+        theSculptures = await Sculpture.find();
+        res.render('sculptures', { title: 'Sculptures', results: theSculptures });
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
 // for a specific Sculpture.
 exports.sculpture_detail = async function (req, res) {
     try {

@@ -2,12 +2,6 @@ extends layout
 
 block content
   h1= title
-  -
-    var results = [
-      {material: "Marble", style: "Realist", year: 1890},
-      {material: "Bronze", style: "Abstract", year: 1965},
-      {material: "Clay", style: "Baroque", year: 1723}
-    ]
   .container-fluid
     .row
       each item in results
