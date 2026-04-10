@@ -25,13 +25,14 @@ exports.sculpture_view_all_Page = async function (req, res) {
 
 // for a specific Sculpture.
 exports.sculpture_detail = async function (req, res) {
+    console.log("detail" + req.params.id)
     try {
         theSculpture = await Sculpture.findById(req.params.id);
         res.send(theSculpture);
     }
     catch (err) {
         res.status(500);
-        res.send(`{"error": ${err}}`);
+        res.send(`"error": document for id ${req.params.id} not found`);
     }
 };
 
