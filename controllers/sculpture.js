@@ -66,11 +66,18 @@ exports.sculpture_delete = async function (req, res) {
 
 // Handle Sculpture update form on PUT.
 exports.sculpture_update_put = async function (req, res) {
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
     try {
-        const sculpture = await Sculpture.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.send(sculpture);
+        const sculpture = await Sculpture.findById(req.params.id);
+        // Do updates of properties
+        if (req.body.material) sculpture.material = req.body.material;
+        if (req.body.style) sculpture.style = req.body.style;
+        if (req.body.year) sculpture.year = req.body.year;
+        let result = await sculpture.save();
+        res.send(result);
     } catch (err) {
         res.status(500);
-        res.send(`{"error": ${err}}`);
+        res.send(`{"error": ${err}}: Update for id ${req.params.id} failed`);
     }
 };
+
