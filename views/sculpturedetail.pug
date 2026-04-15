@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let sculptureid = toShow._id
+  - let sculpture_material = toShow.material
+  - let sculpture_style = toShow.style
+  - let sculpture_year = toShow.year
+  div
+    div.row
+      div(class='sculptureAttr mr-3') Sculpture ID is:
+      div #{sculptureid}
+    div.row
+      div(class='sculptureAttr mr-3') Sculpture Material is:
+      div #{sculpture_material}
+    div.row
+      div(class='sculptureAttr mr-3') Sculpture Style is:
+      div #{sculpture_style}
+    div.row
+      div(class='sculptureAttr mr-3') Sculpture Year is:
+      div #{sculpture_year}
