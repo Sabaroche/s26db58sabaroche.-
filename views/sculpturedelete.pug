@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let sculptureid = toShow._id
+    - let sculpture_material = toShow.material
+    - let sculpture_style = toShow.style
+    - let sculpture_year = toShow.year
+    - let actionid = "/resource/sculptures/" + sculptureid
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='sculptureAttr mr-3') Sculpture ID is:
+        div #{sculptureid}
+      div.row
+        div(class='sculptureAttr mr-3') Sculpture Material is:
+        div #{sculpture_material}
+      div.row
+        div(class='sculptureAttr mr-3') Sculpture Style is:
+        div #{sculpture_style}
+      div.row
+        div(class='sculptureAttr mr-3') Sculpture Year is:
+        div #{sculpture_year}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      // Go back to the home page for the costume collection
+      window.location.href='/sculptures'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/sculptures'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }
