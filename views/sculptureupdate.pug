@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+
+  - let sculptureid = toShow._id
+  - let sculpture_material = toShow.material
+  - let sculpturyear = toShow.year
+  - let sculpturestyle = toShow.style
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{sculptureid}
+  - let actionid = "/resource/sculptures/" + sculptureid
+  form(id='SculptureForm', action= actionid, method="PUT")
+    div.form-group
+        label.sculptureAttr(for='sculpture_material') Sculpture material
+        input#sculpture_material(type='text', name='material', value= sculpture_material )
+    div.form-group
+        label.sculptureAttr(for='sculpture_style') Sculpture style
+        input#sculpture_style(type='text', name='style', value= sculpturestyle )
+    div.form-group
+        label.sculptureAttr(for='sculpture_year') Sculpture year
+        input#sculpture_year(type='number', name='year', value= sculpturyear )
+    input(type="submit")
+
+  script.
+    document.forms['SculptureForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
