@@ -55,12 +55,14 @@ exports.sculpture_create_post = async function (req, res) {
 
 // Handle Sculpture delete from on DELETE.
 exports.sculpture_delete = async function (req, res) {
+    console.log("delete " + req.params.id)
     try {
-        const sculpture = await Sculpture.findByIdAndRemove(req.params.id);
+        const sculpture = await Sculpture.findByIdAndDelete(req.params.id);
+        console.log("Removed " + sculpture);
         res.send(sculpture);
     } catch (err) {
         res.status(500);
-        res.send(`{"error": ${err}}`);
+        res.send(`{"error": Error deleting ${err}}`);
     }
 };
 
