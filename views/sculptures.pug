@@ -9,5 +9,10 @@ block content
           p Material: #{item.material}
           p Style: #{item.style}
           p Year: #{item.year}
-          a(href='/sculptures/update?id=' + item._id)
-            button(class='btn btn-primary btn-sm') Update
+          - let destination = `/sculptures/update?id=${item._id}`
+          button.btn(class="btn-primary ml-1", onclick=`dispatch("${destination}")`) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
