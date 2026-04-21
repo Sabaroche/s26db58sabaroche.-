@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const sculptureSchema = new mongoose.Schema({
-    material: String,
+    material: { type: String, enum: ['marble', 'bronze', 'clay', 'wood', 'steel'] },
     style: String,
     year: { type: Number, min: 1, max: 2026 }
 });
