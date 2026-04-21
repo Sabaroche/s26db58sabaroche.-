@@ -9,7 +9,7 @@ function secured(req, res, next) {
 
 router.get('/', sculpture_controller.sculpture_view_all_Page);
 router.get('/detail', sculpture_controller.sculpture_view_one_page);
-router.get('/create', sculpture_controller.sculpture_create_Page);
+router.get('/create', secured, sculpture_controller.sculpture_create_Page);
 router.get('/update', secured, sculpture_controller.sculpture_update_Page);
 router.get('/delete', secured, sculpture_controller.sculpture_delete_Page);
 
