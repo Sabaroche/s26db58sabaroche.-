@@ -2,6 +2,8 @@ extends layout
 
 block content
   h1= title
+  a(href='/sculptures/create')
+    button(class='btn btn-success mb-3') Add New Sculpture
   .container-fluid
     .row
       each item in results
@@ -9,8 +11,12 @@ block content
           p Material: #{item.material}
           p Style: #{item.style}
           p Year: #{item.year}
-          - let destination = `/sculptures/update?id=${item._id}`
-          button.btn(class="btn-primary ml-1", onclick=`dispatch("${destination}")`) Update
+          - let updateDest = `/sculptures/update?id=${item._id}`
+          - let detailDest = `/sculptures/detail?id=${item._id}`
+          - let deleteDest = `/sculptures/delete?id=${item._id}`
+          button.btn(class="btn-primary ml-1", onclick=`dispatch("${updateDest}")`) Update
+          button.btn(class="btn-info ml-1", onclick=`dispatch("${detailDest}")`) Detail
+          button.btn(class="btn-danger ml-1", onclick=`dispatch("${deleteDest}")`) Delete
 
   script.
     function dispatch(path){
