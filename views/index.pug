@@ -1,20 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p This is a sample application made by J. Sabaroche using Node.js and Express.
-  button(type="button" class="btn btn-outline-primary" onclick="reduce()") PRESS ME 
-  div(id="use") take some away
-  script.
-    var current = 11;
-    var quantity = 2;
-    function reduce(){
-      current -= quantity;
-      if (current < 0) {
-        current = 0;
-      }
-      document.getElementById("use").innerHTML = "Reduced by " + quantity + " to " + current; 
-    }
-  a(href="/sculptures") View Sculptures
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/sculptures") Take me to sculptures
+    br
+    a(href="/logout") Logout
+
 
